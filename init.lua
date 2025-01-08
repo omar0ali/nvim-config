@@ -1,11 +1,26 @@
 require("config.lazy")
 
+-- IMPORTANT KEYMAPS [You can go to :help lsp]
+-- [[
+-- For completion
+-- CTRL+X CTRL+O (old way)
+-- CTRL+X CTRL+L -- complete a line that is already written in the same buffer
+-- ----
+-- FOR GO TO DEF
+-- CTR+] and go back CTRL+t
+-- FOR SHOWING REFERENCES
+-- grr
+-- FOR RENAME ALL - MUST BE AT THE WORD
+-- grn
+-- FOR CODE ACTION
+-- gra
+
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 vim.opt.wrap = false
-vim.opt.scrolloff = 10
+-- vim.opt.scrolloff = 10
 -- vim.opt.guicursor = "" -- this will make it block instead of beam for the cursor, removing this line, will bring it back to beam.
 
 
@@ -20,6 +35,9 @@ vim.keymap.set("n", "<space>ee", "<cmd>Oil<CR>")
 
 -- Cancel anything highlighted
 vim.keymap.set("n", "<space>cc", "<cmd>noh<CR>")
+
+-- Showing all buffers running in the background
+vim.keymap.set("n", "<space>tb", "<cmd>Telescope buffers<CR>", { silent = true, noremap = true })
 
 -- Start presenting an md file.
 vim.keymap.set("n", "<space>ps", "<cmd>Slides<CR>", { silent = true, noremap = true })
