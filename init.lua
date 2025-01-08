@@ -37,7 +37,10 @@ vim.keymap.set("n", "<space>ee", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<space>cc", "<cmd>noh<CR>")
 
 -- Showing all buffers running in the background
-vim.keymap.set("n", "<space>tb", "<cmd>Telescope buffers<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<space>bs", "<cmd>Telescope buffers<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<space>bn", "<cmd>bnext<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<space>bp", "<cmd>bprev<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<space>bh", "<cmd>hide<CR>", { silent = true, noremap = true })
 
 -- Start presenting an md file.
 vim.keymap.set("n", "<space>ps", "<cmd>Slides<CR>", { silent = true, noremap = true })
