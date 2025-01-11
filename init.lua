@@ -45,6 +45,10 @@ vim.keymap.set("n", "<space>bh", "<cmd>hide<CR>", { silent = true, noremap = tru
 -- Start presenting an md file.
 vim.keymap.set("n", "<space>ps", "<cmd>Slides<CR>", { silent = true, noremap = true })
 
+-- Show keymaps
+vim.keymap.set("n", "<space>km", "<cmd>Telescope keymaps<CR>",
+	{ silent = true, noremap = true, desc = "Show all the keymaps" })
+
 -- Moving text up down left right
 vim.keymap.set("x", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("x", ">", ">gv", { noremap = true, silent = true })
