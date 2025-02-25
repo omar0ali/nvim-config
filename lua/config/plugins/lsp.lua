@@ -4,7 +4,7 @@ local function get_python_path(workspace)
 	if vim.fn.filereadable(venv) == 1 then
 		return venv
 	else
-		return vim.fn.expath("python3")
+		return vim.fn.exepath("python3")
 	end
 end
 
@@ -43,7 +43,10 @@ return {
 			},
 		},
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+			-- local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+			local cmp_lsp = require("blink.cmp")
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = cmp_lsp.get_lsp_capabilities(capabilities)
 			require("lspconfig").lua_ls.setup({ capabilities = capabilities })
 			require("lspconfig").gopls.setup({ capabilities = capabilities })
 			require("lspconfig").pyright.setup({
@@ -54,6 +57,10 @@ return {
 			})
 			require("lspconfig").jdtls.setup({ capabilities = capabilities })
 			require("lspconfig").templ.setup({ capabilities = capabilities })
+			require('lspconfig').denols.setup({
+				capabilities = capabilities,
+				root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+			})
 			attachListener()
 		end
 	}
