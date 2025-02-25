@@ -61,6 +61,10 @@ return {
 				capabilities = capabilities,
 				root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
 			})
+			require("lspconfig").ts_ls.setup({
+				capabilities = capabilities,
+				root_dir = require("lspconfig.util").root_pattern("package.json"),
+			})
 			attachListener()
 		end
 	}
