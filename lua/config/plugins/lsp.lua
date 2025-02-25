@@ -1,3 +1,14 @@
+local function get_python_path(workspace)
+	local venv = workspace .. "/env/bin/python"
+	print(venv)
+	if vim.fn.filereadable(venv) == 1 then
+		return venv
+	else
+		return vim.fn.expath("python3")
+	end
+end
+
+
 local attachListener = function()
 	vim.api.nvim_create_autocmd('LspAttach', {
 		callback = function(args)
@@ -35,7 +46,12 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 			require("lspconfig").lua_ls.setup({ capabilities = capabilities })
 			require("lspconfig").gopls.setup({ capabilities = capabilities })
-			require("lspconfig").pyright.setup({ capabilities = capabilities })
+			require("lspconfig").pyright.setup({
+				on_attach = function(client)
+					client.config.settings.python.pythonPath = get_python_path(vim.fn.getcwd())
+					client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+				end,
+			})
 			require("lspconfig").jdtls.setup({ capabilities = capabilities })
 			require("lspconfig").templ.setup({ capabilities = capabilities })
 			attachListener()
