@@ -42,6 +42,11 @@ vim.keymap.set("n", "<space>bn", "<cmd>bnext<CR>", { silent = true, noremap = tr
 vim.keymap.set("n", "<space>bp", "<cmd>bprev<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<space>bh", "<cmd>hide<CR>", { silent = true, noremap = true })
 
+
+-- Tabs
+vim.keymap.set("n", "<space>tt", "<cmd>tabnew<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<space>ts", "<cmd>tabs<CR>", { silent = true, noremap = true })
+
 -- Start presenting an md file.
 vim.keymap.set("n", "<space>ps", "<cmd>Slides<CR>", { silent = true, noremap = true })
 
