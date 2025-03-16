@@ -5,9 +5,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out,                            "WarningMsg" },
-			{ "\nPress any key to exit..." },
+			{
+				"Failed to clone lazy.nvim:\n",
+				"ErrorMsg"
+			},
+			{
+				out,
+				"WarningMsg"
+			},
+			{
+				"\nPress any key to exit..."
+			},
 		}, true, {})
 		vim.fn.getchar()
 		os.exit(1)
@@ -15,7 +23,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 -- Hey! Put lazy into the runtimepath for neovim!
 vim.opt.runtimepath:prepend(lazypath)
-
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -25,7 +32,14 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		{ "folke/tokyonight.nvim",  config = function() vim.cmd.colorscheme "tokyonight-night" end },
+		{
+			"Mofiqul/vscode.nvim",
+			config = function()
+				vim.cmd.colorscheme "vscode"
+				vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+				vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")
+			end
+		},
 		-- import your plugins
 		{ import = "config.plugins" },
 	},
